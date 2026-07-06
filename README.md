@@ -1,5 +1,7 @@
 # Niobium
 
+![Niobium logo](docs/images/logo_niobium.png)
+
 **An ergonomic, immediate-mode Terminal User Interface (TUI) library for Nim.**
 
 Niobium helps you build rich, flicker-free terminal apps by describing your UI as a pure function of
