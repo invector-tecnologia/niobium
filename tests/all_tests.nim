@@ -1,10 +1,7 @@
-## Aggregated test entry point. Every test suite is imported here and run via `nimble test`.
-## Stage 2 adds `import core/..., layout/..., backend/..., widgets/...` suites in dependency order.
+## Aggregated test entry point. Every suite is imported here and run via `nimble test`.
 
-import std/unittest
-
-import ../src/niobium
-
-suite "scaffold":
-  test "package version is present":
-    check NiobiumVersion.len > 0
+import ./test_core
+import ./test_layout
+import ./test_widgets
+import ./test_event
+import ./test_terminal

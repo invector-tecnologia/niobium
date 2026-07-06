@@ -1,11 +1,16 @@
 ## Niobium — an ergonomic, immediate-mode Terminal User Interface library for Nim.
 ##
-## This is the umbrella module. During Stage 1 (infra-first) it exposes only the package
-## version; product modules under `niobium/` are added in Stage 2 in dependency order
-## (core → backend → layout → terminal → event → widgets). See `AGENTS.md` and `specs/`.
+## This umbrella module re-exports the public API: core primitives, the layout engine, backends,
+## the terminal tick driver, events, and widgets. See `AGENTS.md` and `specs/` for the design.
+
+import ./niobium/[core, layout, terminal, event, widgets]
+import ./niobium/backend/[backend, ansi, test_backend]
+export core, layout, terminal, event, widgets
+export backend, ansi, test_backend
 
 const NiobiumVersion* = "0.0.1"
   ## The Niobium package version.
 
 runnableExamples:
   doAssert NiobiumVersion.len > 0
+

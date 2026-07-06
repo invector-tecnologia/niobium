@@ -6,8 +6,9 @@ Niobium helps you build rich, flicker-free terminal apps by describing your UI a
 your application state. You rebuild the interface every tick; Niobium figures out the minimal set of
 cells that actually changed and updates only those.
 
-> Status: early development. The architecture and AI-development operating model are in place; the
-> product API is being implemented spec-first, module by module.
+> Status: v1 core is implemented and tested — core buffer/diff, ANSI + test backends, constraint
+> layout, the terminal tick loop, an event decoder, and the widget set (Block, Paragraph, List,
+> Table, Tabs, Clear, Gauge, Sparkline, BarChart, Scrollbar, Chart).
 
 ## Why Niobium
 
@@ -43,16 +44,21 @@ Requires Nim ≥ 2.0.
 
 ## A taste of the API
 
-The API is still landing; this is the intended shape of a draw loop:
-
 ```nim
 import niobium
 
-terminal.draw proc(f: var Frame) =
+var term = newTerminal(newAnsiBackend())
+term.setup()
+defer: term.restore()
+
+term.draw proc(f: var Frame) =
   let chunks = f.area.split(Vertical, @[length(3), fill(1)])
-  Block(title = "Niobium", borders = All).render(chunks[0], f)
-  Paragraph("Hello, terminal!").render(chunks[1], f)
+  f.renderWidget(initBlock(title = " Niobium ", borders = AllBorders), chunks[0])
+  f.renderWidget(paragraph("Hello, terminal!"), chunks[1])
 ```
+
+See runnable examples in [`examples/`](examples): `examples/hello.nim` (interactive) and
+`examples/demo.nim` (renders a dashboard to text, no TTY required).
 
 ## Project layout
 
