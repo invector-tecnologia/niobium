@@ -1,3 +1,22 @@
 nimcache/
 nimblecache/
 htmldocs/
+
+# Nim build artifacts
+/bin/
+*.exe
+*.out
+
+# Coverage / profiling
+*.gcda
+*.gcno
+coverage/
+*.info
+
+# Fuzzing artifacts
+crash-*
+fuzz-*.log
+
+# Editor / OS
+.DS_Store
+*.swp

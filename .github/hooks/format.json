@@ -1,0 +1,11 @@
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "type": "command",
+        "command": "./scripts/hooks/format-nim.sh",
+        "timeout": 15
+      }
+    ]
+  }
+}

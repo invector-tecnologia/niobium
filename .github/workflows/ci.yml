@@ -1,0 +1,45 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Nim
+        uses: jiro4989/setup-nim-action@v2
+        with:
+          nim-version: "2.0.x"
+
+      - name: Backend boundary gate
+        shell: bash
+        run: ./scripts/check-backend-boundary.sh
+
+      - name: Type + style check
+        run: nim check --styleCheck:error --hints:off src/niobium.nim
+
+      - name: Format check (nph)
+        run: |
+          nimble install -y nph
+          nph --check src tests || (echo "Run 'nimble fmt'"; exit 1)
+
+      - name: Unit + snapshot + layout tests (ORC)
+        run: nimble test
+
+      - name: Allocation invariant
+        run: nim c -r --mm:orc tests/test_alloc_invariant.nim
+
+      - name: ANSI parser fuzz smoke
+        run: nim c -r --mm:orc tests/fuzz/ansi_parser_smoke.nim
+
+      - name: Docs (compile runnableExamples)
+        run: nimble docs
