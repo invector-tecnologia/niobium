@@ -30,7 +30,7 @@ jobs:
       - name: Format check (nph)
         run: |
           nimble install -y nph
-          nph --check src tests || (echo "Run 'nimble fmt'"; exit 1)
+          ~/.nimble/bin/nph --check src tests || (echo "Run 'nimble fmt'"; exit 1)
 
       - name: Unit + snapshot + layout tests (ORC)
         run: nimble test
