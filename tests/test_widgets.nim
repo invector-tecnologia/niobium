@@ -73,7 +73,8 @@ suite "widgets: clear":
 
 suite "widgets: table":
   test "truncates cells to column widths with spacing":
-    let t = table(@[row(["toolong", "wide"])], @[length(3), length(2)], columnSpacing = 1)
+    let t =
+      table(@[row(["toolong", "wide"])], @[length(3), length(2)], columnSpacing = 1)
     var state: TableState
     var buf = newBuffer(rect(0, 0, 6, 1))
     t.render(rect(0, 0, 6, 1), buf, state)
@@ -90,7 +91,7 @@ suite "widgets: table":
       @[length(2), length(2)],
       header = some(row(["H0", "H1"])),
       highlightStyle = defaultStyle().fg(Red),
-      highlightSymbol = "> "
+      highlightSymbol = "> ",
     )
     var state: TableState
     state.selected = some(2)
@@ -104,8 +105,12 @@ suite "widgets: table":
 
 suite "widgets: tabs":
   test "renders divider, highlights selection, and truncates overflow":
-    let t = tabs(["Hello", "World"], selected = 1, highlightStyle = defaultStyle().fg(Red),
-        divider = "|")
+    let t = tabs(
+      ["Hello", "World"],
+      selected = 1,
+      highlightStyle = defaultStyle().fg(Red),
+      divider = "|",
+    )
     let tb = renderOnce(t, 7, 1)
     check tb.render() == "Hello|W"
     check tb.buffer[6, 0].fg == Red
