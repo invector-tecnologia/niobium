@@ -16,4 +16,3 @@ suite "ansi parser fuzz smoke":
       let r = decodeAll(s)
       check r.consumed >= 0
       check r.consumed <= s.len
-

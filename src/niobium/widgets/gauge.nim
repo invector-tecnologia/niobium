@@ -22,8 +22,9 @@ type
 
 const eighths = ["", "▏", "▎", "▍", "▌", "▋", "▊", "▉"]
 
-func gauge*(ratio: float, label = none(string), gaugeStyle = defaultStyle(),
-            blk = none(Block)): Gauge =
+func gauge*(
+    ratio: float, label = none(string), gaugeStyle = defaultStyle(), blk = none(Block)
+): Gauge =
   ## Construct a gauge; `ratio` is clamped to 0..1.
   Gauge(ratio: clamp(ratio, 0.0, 1.0), label: label, gaugeStyle: gaugeStyle, blk: blk)
 
@@ -32,18 +33,24 @@ func percent*(g: Gauge): int =
 
 proc render*(g: Gauge, area: Rect, buf: var Buffer) =
   ## Draw a block-style gauge filling `ratio` of the width, with a centered label.
-  if area.isEmpty: return
+  if area.isEmpty:
+    return
   var inner = area
   if g.blk.isSome:
     g.blk.get.render(area, buf)
     inner = g.blk.get.inner(area)
-  if inner.isEmpty: return
+  if inner.isEmpty:
+    return
 
   let w = inner.width.int
   let filledEighths = int(g.ratio * float(w) * 8.0 + 0.5)
   let fullCols = filledEighths div 8
   let partial = filledEighths mod 8
-  let label = if g.label.isSome: g.label.get else: $g.percent() & "%"
+  let label =
+    if g.label.isSome:
+      g.label.get
+    else:
+      $g.percent() & "%"
   let labelStart = inner.left + alignOffset(alCenter, w, displayWidth(label))
 
   for y in inner.top ..< inner.bottom:
@@ -62,12 +69,14 @@ proc render*(g: Gauge, area: Rect, buf: var Buffer) =
 
 proc render*(g: LineGauge, area: Rect, buf: var Buffer) =
   ## Draw a single-line gauge: a label followed by filled/unfilled cells.
-  if area.isEmpty: return
+  if area.isEmpty:
+    return
   var inner = area
   if g.blk.isSome:
     g.blk.get.render(area, buf)
     inner = g.blk.get.inner(area)
-  if inner.isEmpty: return
+  if inner.isEmpty:
+    return
   let y = inner.top
   var x = inner.left
   if g.label.len > 0:

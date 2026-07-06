@@ -8,9 +8,7 @@ import ./niobium/backend/[backend, ansi, test_backend]
 export core, layout, terminal, event, widgets
 export backend, ansi, test_backend
 
-const NiobiumVersion* = "0.0.1"
-  ## The Niobium package version.
+const NiobiumVersion* = "0.0.1" ## The Niobium package version.
 
 runnableExamples:
   doAssert NiobiumVersion.len > 0
-

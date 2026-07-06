@@ -69,8 +69,11 @@ func patch*(base, over: Style): Style =
     let merged = defaultStyle().fg(Red).patch(defaultStyle().bg(Blue))
     doAssert merged.fg == some(Red) and merged.bg == some(Blue)
   result = base
-  if over.fg.isSome: result.fg = over.fg
-  if over.bg.isSome: result.bg = over.bg
-  if over.underlineColor.isSome: result.underlineColor = over.underlineColor
+  if over.fg.isSome:
+    result.fg = over.fg
+  if over.bg.isSome:
+    result.bg = over.bg
+  if over.underlineColor.isSome:
+    result.underlineColor = over.underlineColor
   result.addMods = (base.addMods - over.subMods) + over.addMods
   result.subMods = (base.subMods - over.addMods) + over.subMods

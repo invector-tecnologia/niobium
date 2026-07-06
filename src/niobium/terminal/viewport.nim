@@ -29,6 +29,9 @@ func fixed*(area: Rect): Viewport =
 func viewportArea*(v: Viewport, sz: Size): Rect =
   ## Resolve the drawable rectangle for a given terminal size.
   case v.kind
-  of vkFullscreen: rect(0, 0, sz.width.int, sz.height.int)
-  of vkInline: rect(0, 0, sz.width.int, min(v.height, sz.height.int))
-  of vkFixed: v.area
+  of vkFullscreen:
+    rect(0, 0, sz.width.int, sz.height.int)
+  of vkInline:
+    rect(0, 0, sz.width.int, min(v.height, sz.height.int))
+  of vkFixed:
+    v.area

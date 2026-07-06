@@ -25,11 +25,21 @@ type
 func listItem*(s: string, style = defaultStyle()): ListItem =
   ListItem(content: text(s), style: style)
 
-func list*(items: openArray[ListItem], blk = none(Block), style = defaultStyle(),
-           highlightStyle = defaultStyle(), highlightSymbol = ""): List =
+func list*(
+    items: openArray[ListItem],
+    blk = none(Block),
+    style = defaultStyle(),
+    highlightStyle = defaultStyle(),
+    highlightSymbol = "",
+): List =
   ## Construct a list.
-  List(items: @items, blk: blk, style: style, highlightStyle: highlightStyle,
-       highlightSymbol: highlightSymbol)
+  List(
+    items: @items,
+    blk: blk,
+    style: style,
+    highlightStyle: highlightStyle,
+    highlightSymbol: highlightSymbol,
+  )
 
 proc select*(s: var ListState, i: int) =
   ## Select item `i`.
@@ -37,12 +47,14 @@ proc select*(s: var ListState, i: int) =
 
 proc render*(l: List, area: Rect, buf: var Buffer, state: var ListState) =
   ## Draw the list, scrolling so the selection stays visible.
-  if area.isEmpty: return
+  if area.isEmpty:
+    return
   var inner = area
   if l.blk.isSome:
     l.blk.get.render(area, buf)
     inner = l.blk.get.inner(area)
-  if inner.isEmpty: return
+  if inner.isEmpty:
+    return
   let rows = inner.height.int
 
   if state.selected.isSome:
@@ -51,18 +63,26 @@ proc render*(l: List, area: Rect, buf: var Buffer, state: var ListState) =
       state.offset = sel
     elif sel >= state.offset + rows:
       state.offset = sel - rows + 1
-  if state.offset < 0: state.offset = 0
+  if state.offset < 0:
+    state.offset = 0
 
   let symWidth = l.highlightSymbol.len
   var y = inner.top
   var i = state.offset
   while i < l.items.len and y < inner.bottom:
     let selected = state.selected.isSome and state.selected.get == i
-    let rowStyle = if selected: l.style.patch(l.items[i].style).patch(l.highlightStyle)
-                   else: l.style.patch(l.items[i].style)
+    let rowStyle =
+      if selected:
+        l.style.patch(l.items[i].style).patch(l.highlightStyle)
+      else:
+        l.style.patch(l.items[i].style)
     var x = inner.left
     if symWidth > 0:
-      let prefix = if selected: l.highlightSymbol else: " ".repeat(symWidth)
+      let prefix =
+        if selected:
+          l.highlightSymbol
+        else:
+          " ".repeat(symWidth)
       x += buf.setStringN(x, y, prefix, rowStyle, inner.right - x)
     if l.items[i].content.lines.len > 0:
       drawLine(buf, x, y, l.items[i].content.lines[0], inner.right - x, rowStyle)

@@ -5,33 +5,37 @@ import std/options
 import ../core/[rect, style, buffer]
 import ./blocks
 
-type
-  Sparkline* = object
-    data*: seq[int]
-    max*: Option[int]
-    style*: Style
-    blk*: Option[Block]
+type Sparkline* = object
+  data*: seq[int]
+  max*: Option[int]
+  style*: Style
+  blk*: Option[Block]
 
 const bars = ["▁", "▂", "▃", "▄", "▅", "▆", "▇", "█"]
 
-func sparkline*(data: openArray[int], max = none(int), style = defaultStyle(),
-                blk = none(Block)): Sparkline =
+func sparkline*(
+    data: openArray[int], max = none(int), style = defaultStyle(), blk = none(Block)
+): Sparkline =
   ## Construct a sparkline.
   Sparkline(data: @data, max: max, style: style, blk: blk)
 
 proc render*(s: Sparkline, area: Rect, buf: var Buffer) =
   ## Draw the sparkline on the bottom row of the (inner) area.
-  if area.isEmpty: return
+  if area.isEmpty:
+    return
   var inner = area
   if s.blk.isSome:
     s.blk.get.render(area, buf)
     inner = s.blk.get.inner(area)
-  if inner.isEmpty: return
+  if inner.isEmpty:
+    return
 
   var maxVal = if s.max.isSome: s.max.get else: 0
   if s.max.isNone:
-    for v in s.data: maxVal = max(maxVal, v)
-  if maxVal <= 0: return
+    for v in s.data:
+      maxVal = max(maxVal, v)
+  if maxVal <= 0:
+    return
 
   let y = inner.bottom - 1
   let count = min(s.data.len, inner.width.int)

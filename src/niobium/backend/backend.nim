@@ -7,13 +7,12 @@
 import ../core/[rect, buffer]
 export rect, buffer
 
-type
-  Backend* = concept b, var m
-    ## Structural contract every backend satisfies.
-    size(b) is Size
-    draw(m, seq[BufferPatch])
-    flush(m)
-    hideCursor(m)
-    showCursor(m)
-    setCursorPos(m, Position)
-    clear(m)
+type Backend* = concept b, var m
+  ## Structural contract every backend satisfies.
+  size(b) is Size
+  draw(m, seq[BufferPatch])
+  flush(m)
+  hideCursor(m)
+  showCursor(m)
+  setCursorPos(m, Position)
+  clear(m)

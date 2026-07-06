@@ -13,8 +13,8 @@ when defined(posix):
 
 type
   ColorLevel* = enum
-    clAnsi16   ## 16 colors only.
-    clAnsi256  ## 8-bit palette.
+    clAnsi16 ## 16 colors only.
+    clAnsi256 ## 8-bit palette.
     clTrueColor ## 24-bit.
 
   AnsiBackend* = object
@@ -31,9 +31,11 @@ const esc = "\e["
 
 proc detectLevel(): ColorLevel =
   let ct = getEnv("COLORTERM")
-  if ct.contains("truecolor") or ct.contains("24bit"): return clTrueColor
+  if ct.contains("truecolor") or ct.contains("24bit"):
+    return clTrueColor
   let term = getEnv("TERM")
-  if term.contains("256"): return clAnsi256
+  if term.contains("256"):
+    return clAnsi256
   clAnsi16
 
 proc newAnsiBackend*(f: File = stdout, level = detectLevel()): AnsiBackend =
@@ -48,17 +50,26 @@ func nearest16(r, g, b: int): int =
     luma = (r * 299 + g * 587 + b * 114) div 1000
     bright = if max(r, max(g, b)) > 170: 8 else: 0
   if max(r, max(g, b)) - min(r, min(g, b)) < 24:
-    if luma < 64: 0 elif luma < 160: 8 else: 15
+    if luma < 64:
+      0
+    elif luma < 160:
+      8
+    else:
+      15
   else:
     var idx = 0
-    if r > 96: idx = idx or 1
-    if g > 96: idx = idx or 2
-    if b > 96: idx = idx or 4
+    if r > 96:
+      idx = idx or 1
+    if g > 96:
+      idx = idx or 2
+    if b > 96:
+      idx = idx or 4
     (idx or bright)
 
 func to256(r, g, b: int): int =
   ## Map an RGB triple to the 6x6x6 color cube (16..231).
-  func c(v: int): int = (if v < 48: 0 elif v < 115: 1 else: (v - 35) div 40)
+  func c(v: int): int =
+    (if v < 48: 0 elif v < 115: 1 else: (v - 35) div 40)
   16 + 36 * c(r) + 6 * c(g) + c(b)
 
 proc colorSeq(c: Color, fg: bool, level: ColorLevel): string =
@@ -68,29 +79,46 @@ proc colorSeq(c: Color, fg: bool, level: ColorLevel): string =
     (if fg: "39" else: "49")
   of ckIndexed16:
     let n = c.idx16.int
-    if n < 8: $(base + n) else: $((if fg: 90 else: 100) + n - 8)
+    if n < 8:
+      $(base + n)
+    else:
+      $((if fg: 90 else: 100) + n - 8)
   of ckIndexed256:
     (if fg: "38;5;" else: "48;5;") & $c.idx256.int
   of ckRgb:
     let (r, g, b) = (c.r.int, c.g.int, c.b.int)
     case level
-    of clTrueColor: (if fg: "38;2;" else: "48;2;") & $r & ";" & $g & ";" & $b
-    of clAnsi256: (if fg: "38;5;" else: "48;5;") & $to256(r, g, b)
+    of clTrueColor:
+      (if fg: "38;2;" else: "48;2;") & $r & ";" & $g & ";" & $b
+    of clAnsi256:
+      (if fg: "38;5;" else: "48;5;") & $to256(r, g, b)
     of clAnsi16:
       let n = nearest16(r, g, b)
-      if n < 8: $(base + n) else: $((if fg: 90 else: 100) + n - 8)
+      if n < 8:
+        $(base + n)
+      else:
+        $((if fg: 90 else: 100) + n - 8)
 
 proc modSeq(mods: set[Modifier]): string =
   var parts: seq[string]
-  if mBold in mods: parts.add "1"
-  if mDim in mods: parts.add "2"
-  if mItalic in mods: parts.add "3"
-  if mUnderlined in mods: parts.add "4"
-  if mSlowBlink in mods: parts.add "5"
-  if mRapidBlink in mods: parts.add "6"
-  if mReversed in mods: parts.add "7"
-  if mHidden in mods: parts.add "8"
-  if mCrossedOut in mods: parts.add "9"
+  if mBold in mods:
+    parts.add "1"
+  if mDim in mods:
+    parts.add "2"
+  if mItalic in mods:
+    parts.add "3"
+  if mUnderlined in mods:
+    parts.add "4"
+  if mSlowBlink in mods:
+    parts.add "5"
+  if mRapidBlink in mods:
+    parts.add "6"
+  if mReversed in mods:
+    parts.add "7"
+  if mHidden in mods:
+    parts.add "8"
+  if mCrossedOut in mods:
+    parts.add "9"
   parts.join(";")
 
 proc emitStyle(b: var AnsiBackend, c: Cell) =
@@ -98,9 +126,12 @@ proc emitStyle(b: var AnsiBackend, c: Cell) =
     return
   var parts = @["0"]
   let ms = modSeq(c.modifier)
-  if ms.len > 0: parts.add ms
-  if c.fg.kind != ckReset: parts.add colorSeq(c.fg, true, b.level)
-  if c.bg.kind != ckReset: parts.add colorSeq(c.bg, false, b.level)
+  if ms.len > 0:
+    parts.add ms
+  if c.fg.kind != ckReset:
+    parts.add colorSeq(c.fg, true, b.level)
+  if c.bg.kind != ckReset:
+    parts.add colorSeq(c.bg, false, b.level)
   b.outFile.write esc & parts.join(";") & "m"
   b.hasStyle = true
   b.curFg = c.fg
@@ -114,6 +145,7 @@ proc size*(b: AnsiBackend): Size =
   when defined(posix):
     type WinSize = object
       row, col, xpixel, ypixel: cushort
+
     when defined(macosx):
       const TIOCGWINSZ = 0x40087468
     else:
@@ -137,12 +169,23 @@ proc draw*(b: var AnsiBackend, patches: seq[BufferPatch]) =
     lastY = p.y.int
     lastX = p.x.int + max(1, p.cell.width)
 
-proc flush*(b: var AnsiBackend) = b.outFile.flushFile()
-proc hideCursor*(b: var AnsiBackend) = b.outFile.write esc & "?25l"
-proc showCursor*(b: var AnsiBackend) = b.outFile.write esc & "?25h"
-proc clear*(b: var AnsiBackend) = b.outFile.write esc & "2J"
-proc enterAltScreen*(b: var AnsiBackend) = b.outFile.write esc & "?1049h"
-proc leaveAltScreen*(b: var AnsiBackend) = b.outFile.write esc & "?1049l"
+proc flush*(b: var AnsiBackend) =
+  b.outFile.flushFile()
+
+proc hideCursor*(b: var AnsiBackend) =
+  b.outFile.write esc & "?25l"
+
+proc showCursor*(b: var AnsiBackend) =
+  b.outFile.write esc & "?25h"
+
+proc clear*(b: var AnsiBackend) =
+  b.outFile.write esc & "2J"
+
+proc enterAltScreen*(b: var AnsiBackend) =
+  b.outFile.write esc & "?1049h"
+
+proc leaveAltScreen*(b: var AnsiBackend) =
+  b.outFile.write esc & "?1049l"
 
 proc enterRaw*(b: var AnsiBackend) =
   ## Put the terminal into raw mode, saving the previous state.

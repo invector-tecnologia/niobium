@@ -9,14 +9,13 @@ import ./color
 import ./style
 import ./unicodewidth
 
-type
-  Cell* = object
-    sym: string ## Grapheme cluster; empty is treated as a single space.
-    fg*: Color
-    bg*: Color
-    underlineColor*: Color
-    modifier*: set[Modifier]
-    skip*: bool ## True for the trailing column of a wide (2-cell) glyph.
+type Cell* = object
+  sym: string ## Grapheme cluster; empty is treated as a single space.
+  fg*: Color
+  bg*: Color
+  underlineColor*: Color
+  modifier*: set[Modifier]
+  skip*: bool ## True for the trailing column of a wide (2-cell) glyph.
 
 func symbol*(c: Cell): string =
   ## The cell's grapheme (a single space when unset).
@@ -33,7 +32,8 @@ func width*(c: Cell): int =
 func `==`*(a, b: Cell): bool =
   ## Structural equality (used by the diff to detect changed cells).
   a.symbol == b.symbol and a.fg == b.fg and a.bg == b.bg and
-    a.underlineColor == b.underlineColor and a.modifier == b.modifier and a.skip == b.skip
+    a.underlineColor == b.underlineColor and a.modifier == b.modifier and
+    a.skip == b.skip
 
 func cell*(sym = " "): Cell =
   ## A cell holding `sym` with default (reset) colors and no modifiers.
@@ -55,7 +55,10 @@ proc apply*(c: var Cell, s: Style) =
     var x = cell("a")
     x.apply(defaultStyle().fg(Red).add(mBold))
     doAssert x.fg == Red and mBold in x.modifier
-  if s.fg.isSome: c.fg = s.fg.get
-  if s.bg.isSome: c.bg = s.bg.get
-  if s.underlineColor.isSome: c.underlineColor = s.underlineColor.get
+  if s.fg.isSome:
+    c.fg = s.fg.get
+  if s.bg.isSome:
+    c.bg = s.bg.get
+  if s.underlineColor.isSome:
+    c.underlineColor = s.underlineColor.get
   c.modifier = (c.modifier - s.subMods) + s.addMods

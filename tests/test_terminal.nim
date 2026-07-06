@@ -14,8 +14,10 @@ suite "terminal: draw loop":
 
   test "cursor is hidden when unset, shown when set":
     var term = newTerminal(newTestBackend(5, 2))
-    term.draw proc(f: var Frame) = discard
+    term.draw proc(f: var Frame) =
+      discard
     check term.backend.cursorVisible == false
-    term.draw proc(f: var Frame) = f.setCursor(pos(2, 1))
+    term.draw proc(f: var Frame) =
+      f.setCursor(pos(2, 1))
     check term.backend.cursorVisible == true
     check term.backend.cursor == pos(2, 1)

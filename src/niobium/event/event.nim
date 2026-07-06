@@ -30,8 +30,8 @@ type
 
   KeyEvent* = object
     code*: KeyCode
-    rune*: Rune         ## Valid when `code == kcChar`.
-    function*: int      ## Valid when `code == kcFunction` (1 = F1).
+    rune*: Rune ## Valid when `code == kcChar`.
+    function*: int ## Valid when `code == kcFunction` (1 = F1).
     mods*: set[KeyModifier]
 
   MouseKind* = enum

@@ -31,8 +31,9 @@ suite "widgets: paragraph":
 
 suite "widgets: list selection":
   test "highlight symbol on selected row":
-    let l = list(@[listItem("one"), listItem("two"), listItem("three")],
-                 highlightSymbol = "> ")
+    let l = list(
+      @[listItem("one"), listItem("two"), listItem("three")], highlightSymbol = "> "
+    )
     var st: ListState
     st.select(1)
     var buf = newBuffer(rect(0, 0, 10, 3))
@@ -42,7 +43,8 @@ suite "widgets: list selection":
 
   test "scrolls selection into view":
     var items: seq[ListItem]
-    for i in 0 ..< 10: items.add listItem("item" & $i)
+    for i in 0 ..< 10:
+      items.add listItem("item" & $i)
     let l = list(items)
     var st: ListState
     st.select(9)

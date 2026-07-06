@@ -10,7 +10,8 @@ type
   Size* = object ## A width/height extent in cells.
     width*, height*: uint16
 
-  Rect* = object ## An axis-aligned rectangle of cells. `right`/`bottom` edges are exclusive.
+  Rect* = object
+    ## An axis-aligned rectangle of cells. `right`/`bottom` edges are exclusive.
     x*, y*, width*, height*: uint16
 
 func rect*(x, y, width, height: int): Rect =
@@ -34,10 +35,14 @@ func area*(r: Rect): int =
     doAssert rect(0, 0, 3, 4).area == 12
   r.width.int * r.height.int
 
-func left*(r: Rect): int = r.x.int
-func top*(r: Rect): int = r.y.int
-func right*(r: Rect): int = r.x.int + r.width.int ## Exclusive.
-func bottom*(r: Rect): int = r.y.int + r.height.int ## Exclusive.
+func left*(r: Rect): int =
+  r.x.int
+func top*(r: Rect): int =
+  r.y.int
+func right*(r: Rect): int = ## Exclusive.
+  r.x.int + r.width.int
+func bottom*(r: Rect): int = ## Exclusive.
+  r.y.int + r.height.int
 
 func isEmpty*(r: Rect): bool =
   ## True when the rectangle covers no cells.
@@ -56,12 +61,17 @@ func intersection*(a, b: Rect): Rect =
     y1 = max(a.top, b.top)
     x2 = min(a.right, b.right)
     y2 = min(a.bottom, b.bottom)
-  if x2 <= x1 or y2 <= y1: rect(x1, y1, 0, 0) else: rect(x1, y1, x2 - x1, y2 - y1)
+  if x2 <= x1 or y2 <= y1:
+    rect(x1, y1, 0, 0)
+  else:
+    rect(x1, y1, x2 - x1, y2 - y1)
 
 func union*(a, b: Rect): Rect =
   ## The smallest rectangle containing both `a` and `b`.
-  if a.isEmpty: return b
-  if b.isEmpty: return a
+  if a.isEmpty:
+    return b
+  if b.isEmpty:
+    return a
   let
     x1 = min(a.left, b.left)
     y1 = min(a.top, b.top)
@@ -74,10 +84,19 @@ func inner*(r: Rect, horizontal, vertical: int): Rect =
   runnableExamples:
     doAssert rect(0, 0, 10, 10).inner(2, 1) == rect(2, 1, 6, 8)
   if r.width.int < 2 * horizontal or r.height.int < 2 * vertical:
-    rect(r.x.int + min(horizontal, r.width.int), r.y.int + min(vertical, r.height.int), 0, 0)
+    rect(
+      r.x.int + min(horizontal, r.width.int),
+      r.y.int + min(vertical, r.height.int),
+      0,
+      0,
+    )
   else:
-    rect(r.x.int + horizontal, r.y.int + vertical,
-         r.width.int - 2 * horizontal, r.height.int - 2 * vertical)
+    rect(
+      r.x.int + horizontal,
+      r.y.int + vertical,
+      r.width.int - 2 * horizontal,
+      r.height.int - 2 * vertical,
+    )
 
 func inner*(r: Rect, margin: int): Rect =
   ## Shrink `r` uniformly by `margin` on all sides.

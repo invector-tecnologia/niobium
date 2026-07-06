@@ -7,12 +7,11 @@ import std/options
 
 import ../core/[rect, buffer]
 
-type
-  Frame* = object
-    buf*: ptr Buffer
-    frameArea*: Rect
-    cursor*: Option[Position]
-    count*: int
+type Frame* = object
+  buf*: ptr Buffer
+  frameArea*: Rect
+  cursor*: Option[Position]
+  count*: int
 
 func area*(f: Frame): Rect =
   ## The drawable area for this frame.

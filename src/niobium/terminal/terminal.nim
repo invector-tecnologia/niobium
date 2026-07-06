@@ -7,14 +7,13 @@ import ../core/[rect, buffer]
 import ./frame
 import ./viewport
 
-type
-  Terminal*[B] = object
-    backend*: B
-    buffers: array[2, Buffer]
-    current: int
-    viewport*: Viewport
-    frameCount: int
-    patches: seq[BufferPatch]
+type Terminal*[B] = object
+  backend*: B
+  buffers: array[2, Buffer]
+  current: int
+  viewport*: Viewport
+  frameCount: int
+  patches: seq[BufferPatch]
 
 proc newTerminal*[B](backend: B, viewport = fullscreen()): Terminal[B] =
   ## Create a terminal over `backend`. Buffers are sized lazily on the first `draw`.

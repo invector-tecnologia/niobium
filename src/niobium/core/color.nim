@@ -5,10 +5,10 @@
 
 type
   ColorKind* = enum
-    ckReset      ## Terminal default color.
-    ckIndexed16  ## One of the 16 ANSI colors (0..15).
+    ckReset ## Terminal default color.
+    ckIndexed16 ## One of the 16 ANSI colors (0..15).
     ckIndexed256 ## An 8-bit palette color (0..255).
-    ckRgb        ## A 24-bit true color.
+    ckRgb ## A 24-bit true color.
 
   Color* = object
     case kind*: ColorKind
@@ -19,12 +19,17 @@ type
 
 func `==`*(a, b: Color): bool =
   ## Structural equality for the variant `Color` type.
-  if a.kind != b.kind: return false
+  if a.kind != b.kind:
+    return false
   case a.kind
-  of ckReset: true
-  of ckIndexed16: a.idx16 == b.idx16
-  of ckIndexed256: a.idx256 == b.idx256
-  of ckRgb: a.r == b.r and a.g == b.g and a.b == b.b
+  of ckReset:
+    true
+  of ckIndexed16:
+    a.idx16 == b.idx16
+  of ckIndexed256:
+    a.idx256 == b.idx256
+  of ckRgb:
+    a.r == b.r and a.g == b.g and a.b == b.b
 
 func indexed*(n: int): Color =
   ## An 8-bit palette color.

@@ -47,7 +47,8 @@ proc parseCsi(buf: string, start: int): DecodeResult =
           me.kind = mkUp
         else:
           me.kind = mkDown
-        me.button = case (b and 3)
+        me.button =
+          case (b and 3)
           of 0: mbLeft
           of 1: mbMiddle
           of 2: mbRight
@@ -58,32 +59,55 @@ proc parseCsi(buf: string, start: int): DecodeResult =
     return DecodeResult(event: ev, consumed: consumed)
 
   case final
-  of 'A': ev = some(keyEvent(kcUp))
-  of 'B': ev = some(keyEvent(kcDown))
-  of 'C': ev = some(keyEvent(kcRight))
-  of 'D': ev = some(keyEvent(kcLeft))
-  of 'H': ev = some(keyEvent(kcHome))
-  of 'F': ev = some(keyEvent(kcEnd))
-  of 'Z': ev = some(keyEvent(kcBackTab, {kmShift}))
-  of 'I': ev = some(Event(kind: evFocusGained))
-  of 'O': ev = some(Event(kind: evFocusLost))
+  of 'A':
+    ev = some(keyEvent(kcUp))
+  of 'B':
+    ev = some(keyEvent(kcDown))
+  of 'C':
+    ev = some(keyEvent(kcRight))
+  of 'D':
+    ev = some(keyEvent(kcLeft))
+  of 'H':
+    ev = some(keyEvent(kcHome))
+  of 'F':
+    ev = some(keyEvent(kcEnd))
+  of 'Z':
+    ev = some(keyEvent(kcBackTab, {kmShift}))
+  of 'I':
+    ev = some(Event(kind: evFocusGained))
+  of 'O':
+    ev = some(Event(kind: evFocusLost))
   of '~':
     var n = 0
     try:
-      if params.len > 0: n = parseInt(params.split(';')[0])
-    except ValueError: n = 0
-    ev = case n
-      of 1, 7: some(keyEvent(kcHome))
-      of 2: some(keyEvent(kcInsert))
-      of 3: some(keyEvent(kcDelete))
-      of 4, 8: some(keyEvent(kcEnd))
-      of 5: some(keyEvent(kcPageUp))
-      of 6: some(keyEvent(kcPageDown))
-      of 11, 12, 13, 14, 15: some(functionEvent(n - 10))
-      of 17, 18, 19, 20, 21: some(functionEvent(n - 11))
-      of 23, 24: some(functionEvent(n - 12))
-      else: none(Event)
-  else: discard
+      if params.len > 0:
+        n = parseInt(params.split(';')[0])
+    except ValueError:
+      n = 0
+    ev =
+      case n
+      of 1, 7:
+        some(keyEvent(kcHome))
+      of 2:
+        some(keyEvent(kcInsert))
+      of 3:
+        some(keyEvent(kcDelete))
+      of 4, 8:
+        some(keyEvent(kcEnd))
+      of 5:
+        some(keyEvent(kcPageUp))
+      of 6:
+        some(keyEvent(kcPageDown))
+      of 11, 12, 13, 14, 15:
+        some(functionEvent(n - 10))
+      of 17, 18, 19, 20, 21:
+        some(functionEvent(n - 11))
+      of 23, 24:
+        some(functionEvent(n - 12))
+      else:
+        none(Event)
+  else:
+    discard
   DecodeResult(event: ev, consumed: consumed)
 
 proc decodeOne(buf: string, start: int): DecodeResult =
@@ -94,23 +118,34 @@ proc decodeOne(buf: string, start: int): DecodeResult =
     if start + 1 >= buf.len:
       return DecodeResult(consumed: 0)
     case buf[start + 1]
-    of '[': parseCsi(buf, start + 1)
+    of '[':
+      parseCsi(buf, start + 1)
     of 'O':
-      if start + 2 >= buf.len: return DecodeResult(consumed: 0)
+      if start + 2 >= buf.len:
+        return DecodeResult(consumed: 0)
       let f = buf[start + 2]
-      let ev = case f
-        of 'P': some(functionEvent(1))
-        of 'Q': some(functionEvent(2))
-        of 'R': some(functionEvent(3))
-        of 'S': some(functionEvent(4))
-        else: none(Event)
+      let ev =
+        case f
+        of 'P':
+          some(functionEvent(1))
+        of 'Q':
+          some(functionEvent(2))
+        of 'R':
+          some(functionEvent(3))
+        of 'S':
+          some(functionEvent(4))
+        else:
+          none(Event)
       DecodeResult(event: ev, consumed: 3)
     else:
       # Alt + next byte.
       DecodeResult(event: some(charEvent(buf[start + 1], {kmAlt})), consumed: 2)
-  of '\r', '\n': DecodeResult(event: some(keyEvent(kcEnter)), consumed: 1)
-  of '\t': DecodeResult(event: some(keyEvent(kcTab)), consumed: 1)
-  of '\x7f', '\b': DecodeResult(event: some(keyEvent(kcBackspace)), consumed: 1)
+  of '\r', '\n':
+    DecodeResult(event: some(keyEvent(kcEnter)), consumed: 1)
+  of '\t':
+    DecodeResult(event: some(keyEvent(kcTab)), consumed: 1)
+  of '\x7f', '\b':
+    DecodeResult(event: some(keyEvent(kcBackspace)), consumed: 1)
   of '\x01' .. '\x07', '\x0b', '\x0c', '\x0e' .. '\x1a':
     # Ctrl + letter (Enter/Tab/Backspace handled above).
     let letter = Rune(ord('a') + (c.ord - 1))
@@ -121,10 +156,14 @@ proc decodeOne(buf: string, start: int): DecodeResult =
       DecodeResult(event: some(charEvent(c)), consumed: 1)
     else:
       let need =
-        if (c.ord and 0xE0) == 0xC0: 2
-        elif (c.ord and 0xF0) == 0xE0: 3
-        elif (c.ord and 0xF8) == 0xF0: 4
-        else: 1
+        if (c.ord and 0xE0) == 0xC0:
+          2
+        elif (c.ord and 0xF0) == 0xE0:
+          3
+        elif (c.ord and 0xF8) == 0xF0:
+          4
+        else:
+          1
       if start + need > buf.len:
         return DecodeResult(consumed: 0)
       var r: Rune
@@ -161,8 +200,10 @@ proc pollEvent*(timeoutMs = 100): Option[Event] =
     var fds: TFdSet
     FD_ZERO(fds)
     FD_SET(cint(0), fds)
-    var tv = Timeval(tv_sec: posix.Time(timeoutMs div 1000),
-                     tv_usec: Suseconds((timeoutMs mod 1000) * 1000))
+    var tv = Timeval(
+      tv_sec: posix.Time(timeoutMs div 1000),
+      tv_usec: Suseconds((timeoutMs mod 1000) * 1000),
+    )
     if select(cint(1), addr fds, nil, nil, addr tv) > 0:
       var buf: array[64, char]
       let n = read(cint(0), addr buf[0], 64)

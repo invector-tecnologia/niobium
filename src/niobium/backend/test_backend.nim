@@ -3,11 +3,10 @@
 
 import ../core/[rect, cell, buffer]
 
-type
-  TestBackend* = object
-    buffer*: Buffer
-    cursor*: Position
-    cursorVisible*: bool
+type TestBackend* = object
+  buffer*: Buffer
+  cursor*: Position
+  cursorVisible*: bool
 
 proc newTestBackend*(width, height: int): TestBackend =
   ## A test backend sized to `width` x `height`.
@@ -21,16 +20,35 @@ proc draw*(b: var TestBackend, patches: seq[BufferPatch]) =
   for p in patches:
     b.buffer[p.x.int, p.y.int] = p.cell
 
-proc flush*(b: var TestBackend) = discard
-proc hideCursor*(b: var TestBackend) = b.cursorVisible = false
-proc showCursor*(b: var TestBackend) = b.cursorVisible = true
-proc setCursorPos*(b: var TestBackend, p: Position) = b.cursor = p
-proc getCursorPos*(b: TestBackend): Position = b.cursor
-proc clear*(b: var TestBackend) = b.buffer.reset()
-proc enterRaw*(b: var TestBackend) = discard
-proc leaveRaw*(b: var TestBackend) = discard
-proc enterAltScreen*(b: var TestBackend) = discard
-proc leaveAltScreen*(b: var TestBackend) = discard
+proc flush*(b: var TestBackend) =
+  discard
+
+proc hideCursor*(b: var TestBackend) =
+  b.cursorVisible = false
+
+proc showCursor*(b: var TestBackend) =
+  b.cursorVisible = true
+
+proc setCursorPos*(b: var TestBackend, p: Position) =
+  b.cursor = p
+
+proc getCursorPos*(b: TestBackend): Position =
+  b.cursor
+
+proc clear*(b: var TestBackend) =
+  b.buffer.reset()
+
+proc enterRaw*(b: var TestBackend) =
+  discard
+
+proc leaveRaw*(b: var TestBackend) =
+  discard
+
+proc enterAltScreen*(b: var TestBackend) =
+  discard
+
+proc leaveAltScreen*(b: var TestBackend) =
+  discard
 
 proc render*(b: TestBackend): string =
   ## A plain-text snapshot of the buffer: one line per row, trailing spaces trimmed per line.
@@ -47,5 +65,6 @@ proc render*(b: TestBackend): string =
         row.add c.symbol
     while row.len > 0 and row[^1] == ' ':
       row.setLen(row.len - 1)
-    if y > 0: result.add "\n"
+    if y > 0:
+      result.add "\n"
     result.add row

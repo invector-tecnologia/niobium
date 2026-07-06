@@ -59,7 +59,9 @@ proc resize*(b: var Buffer, area: Rect) =
   b.content.setLen(area.area)
   b.reset()
 
-proc setStringN*(b: var Buffer, x, y: int, s: string, st: Style, maxWidth: int): int {.discardable.} =
+proc setStringN*(
+    b: var Buffer, x, y: int, s: string, st: Style, maxWidth: int
+): int {.discardable.} =
   ## Write `s` starting at `(x, y)`, applying style `st`, up to `maxWidth` columns.
   ## Wide graphemes are never split; the trailing cell is marked `skip`. Returns columns written.
   var cx = x
@@ -83,7 +85,9 @@ proc setStringN*(b: var Buffer, x, y: int, s: string, st: Style, maxWidth: int):
     cx += w
   cx - x
 
-proc setString*(b: var Buffer, x, y: int, s: string, st: Style = defaultStyle()): int {.discardable.} =
+proc setString*(
+    b: var Buffer, x, y: int, s: string, st: Style = defaultStyle()
+): int {.discardable.} =
   ## Write `s` at `(x, y)` bounded by the buffer's right edge. Returns columns written.
   b.setStringN(x, y, s, st, b.area.right - x)
 
