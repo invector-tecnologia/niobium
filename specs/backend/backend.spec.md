@@ -1,6 +1,7 @@
 # Backend spec
 
-- Parity: `backend::Backend` · ADR: 0002, 0007, 0008, 0012 · Tests: tests/backend/test_backend.nim
+- Parity: `backend::Backend` · ADR: 0002, 0007, 0008, 0012 · Tests: tests/test_terminal.nim
+- Status: mirrored
 
 ## Purpose
 The only place bytes reach the terminal. Encodes buffer patches; manages terminal lifecycle.

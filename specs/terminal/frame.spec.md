@@ -1,6 +1,7 @@
 # Frame & Terminal spec
 
-- Parity: `Terminal`, `Frame` · ADR: 0001, 0002, 0008 · Tests: tests/terminal/test_terminal.nim
+- Parity: `Terminal`, `Frame` · ADR: 0001, 0002, 0008 · Tests: tests/test_terminal.nim, tests/test_alloc_invariant.nim
+- Status: mirrored
 
 ## Purpose
 `Terminal[B]` owns the two buffers and the backend and drives the tick. `Frame` is the per-draw

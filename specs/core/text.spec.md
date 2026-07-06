@@ -1,6 +1,7 @@
 # Text spec
 
-- Parity: `text::{Span,Line,Text}` · ADR: 0005, 0006 · Tests: tests/core/test_text.nim
+- Parity: `text::{Span,Line,Text}` · ADR: 0005, 0006 · Tests: tests/test_core.nim
+- Status: mirrored
 
 ## Purpose
 Structured styled text: the input to text-rendering widgets (Paragraph, List, Table cells).

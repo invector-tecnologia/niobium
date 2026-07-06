@@ -1,6 +1,7 @@
 # Clear spec
 
-- Parity: `widgets::Clear` · Tests: tests/widgets/test_clear.nim
+- Parity: `widgets::Clear` · Tests: tests/test_widgets.nim
+- Status: mirrored
 
 ## Purpose
 Reset every cell in an area to blank — used to punch a hole (e.g. behind a popup) before drawing.

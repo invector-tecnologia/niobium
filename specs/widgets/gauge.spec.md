@@ -1,6 +1,7 @@
 # Gauge spec
 
-- Parity: `widgets::Gauge`, `widgets::LineGauge` · Tests: tests/widgets/test_gauge.nim
+- Parity: `widgets::Gauge`, `widgets::LineGauge` · Tests: tests/test_widgets.nim
+- Status: mirrored
 
 ## Purpose
 Show progress as a filled bar (`Gauge`, block-based) or a single line (`LineGauge`).

@@ -1,6 +1,7 @@
 # Viewport spec
 
-- Parity: `Viewport` · ADR: 0001 · Tests: tests/terminal/test_viewport.nim
+- Parity: `Viewport` · ADR: 0001 · Tests: tests/test_terminal.nim
+- Status: mirrored
 
 ## Purpose
 Where Niobium draws within the terminal.

@@ -1,6 +1,7 @@
 # Buffer spec
 
-- Parity: `buffer::Buffer` · ADR: 0001, 0003, 0010 · Tests: tests/core/test_buffer.nim
+- Parity: `buffer::Buffer` · ADR: 0001, 0003, 0010 · Tests: tests/test_core.nim, tests/test_alloc_invariant.nim
+- Status: mirrored
 
 ## Purpose
 A retained 2-D grid of `Cell`s. It is the diff baseline that makes double buffering possible.

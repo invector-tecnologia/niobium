@@ -1,6 +1,7 @@
 # Rect spec
 
-- Parity: `layout::Rect` · ADR: — · Tests: tests/core/test_rect.nim
+- Parity: `layout::Rect` · ADR: — · Tests: tests/test_core.nim
+- Status: mirrored
 
 ## Purpose
 An axis-aligned rectangle of terminal cells: the unit of area passed to layout and widgets. Pure

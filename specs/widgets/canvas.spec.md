@@ -1,6 +1,6 @@
 # Canvas spec (v0.2 candidate)
 
-- Parity: `widgets::canvas::Canvas` · Tests: tests/widgets/test_canvas.nim
+- Parity: `widgets::canvas::Canvas` · Tests: tests/test_widgets.nim
 - Status: **deferred to v0.2** unless promoted (see plan Further Considerations).
 
 ## Purpose

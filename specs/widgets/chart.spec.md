@@ -1,23 +1,22 @@
 # Chart spec
 
-- Parity: `widgets::Chart` · Tests: tests/widgets/test_chart.nim
+- Parity: `widgets::Chart` · Tests: tests/test_widgets.nim
+- Status: mirrored
 
 ## Purpose
-An X/Y chart with labeled axes and one or more datasets (line/scatter/bar markers via braille or
-block markers).
+A minimal X/Y plot with one or more datasets and line or scatter rendering.
 
 ## API surface
-- `Axis = object { title: Option[Line], bounds: (float, float), labels: seq[Span], style }`.
 - `Dataset = object { name, data: seq[(float,float)], marker, graphType, style }`.
-- `Chart` with `datasets`, `xAxis`, `yAxis`, `block`, `legendPosition`, `hiddenLegendConstraints`.
+- `Chart` with `datasets`, `xBounds`, `yBounds`, `blk`.
+- `dataset(name, data, marker = mkDot, graphType = gtScatter, style = defaultStyle())` and
+  `chart(datasets, xBounds, yBounds, blk = none(Block))` constructors.
 
 ## Behavior
-1. Data coordinates map to the plotting rect via axis `bounds` (linear scale).
-2. Markers render with the dataset's marker set (Braille/Dot/Block); lines interpolate between
+1. Data coordinates map to the plotting rect via the explicit `xBounds`/`yBounds` (linear scale).
+2. Markers render with the dataset's marker set (Dot/Block); lines interpolate between
    consecutive points.
-3. Axis labels render along each axis within bounds; the legend renders per `legendPosition` unless
-   it violates `hiddenLegendConstraints`.
-4. Points outside bounds are clipped.
+3. Points outside bounds are clipped.
 
 ## Acceptance criteria
-- [ ] Goldens: single line dataset; scatter; two datasets + legend; axis labels; clipping.
+- [ ] Goldens: single line dataset; scatter; clipping.

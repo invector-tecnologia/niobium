@@ -1,6 +1,7 @@
 # Block spec
 
-- Parity: `widgets::Block` · Tests: tests/widgets/test_block.nim
+- Parity: `widgets::Block` · Tests: tests/test_widgets.nim
+- Status: mirrored
 
 ## Purpose
 Foundational container: optional borders, titles, and padding. Many widgets render inside a Block's

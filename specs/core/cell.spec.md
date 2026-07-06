@@ -1,6 +1,7 @@
 # Cell spec
 
-- Parity: `buffer::Cell` · ADR: 0003, 0005, 0006 · Tests: tests/core/test_cell.nim
+- Parity: `buffer::Cell` · ADR: 0003, 0005, 0006 · Tests: tests/test_core.nim
+- Status: mirrored
 
 ## Purpose
 One grid position: a grapheme cluster plus its style and a `skip` flag for the trailing half of a

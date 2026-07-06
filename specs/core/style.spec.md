@@ -1,6 +1,7 @@
 # Style & Color spec
 
-- Parity: `style::{Style,Color,Modifier}` · ADR: 0005, 0012 · Tests: tests/core/test_style.nim
+- Parity: `style::{Style,Color,Modifier}` · ADR: 0005, 0012 · Tests: tests/test_core.nim
+- Status: mirrored
 
 ## Purpose
 The styling model shared by text and cells. Stores author intent; degradation happens at the backend.

@@ -1,6 +1,7 @@
 # Paragraph spec
 
-- Parity: `widgets::Paragraph` · Tests: tests/widgets/test_paragraph.nim
+- Parity: `widgets::Paragraph` · Tests: tests/test_widgets.nim
+- Status: mirrored
 
 ## Purpose
 Render `Text` with optional wrapping, alignment, and vertical scroll, optionally inside a Block.

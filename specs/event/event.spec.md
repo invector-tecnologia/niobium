@@ -1,6 +1,7 @@
 # Event spec
 
-- Parity: `event::{Event,KeyEvent,MouseEvent}` · ADR: 0007 · Tests: tests/event/test_reader.nim
+- Parity: `event::{Event,KeyEvent,MouseEvent}` · ADR: 0007 · Tests: tests/test_event.nim, tests/fuzz/ansi_parser_smoke.nim
+- Status: mirrored
 
 ## Purpose
 Decode terminal input bytes into structured events for the application loop.

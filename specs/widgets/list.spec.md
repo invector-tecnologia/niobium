@@ -1,6 +1,7 @@
 # List spec
 
-- Parity: `widgets::List` + `ListState` · Tests: tests/widgets/test_list.nim
+- Parity: `widgets::List` + `ListState` · Tests: tests/test_widgets.nim
+- Status: mirrored
 
 ## Purpose
 A vertical, scrollable, selectable list. Stateful widget (offset + selection live in `ListState`).

@@ -48,7 +48,7 @@ ratatui must appear here. The `ratatui-parity` skill governs updates.
 
 | ratatui | Niobium | Status | ADR / Spec |
 |---|---|---|---|
-| `widgets::Block` | `widgets/block.Block` | mirrored | specs/widgets/block.spec.md |
+| `widgets::Block` | `widgets/blocks.Block` | mirrored | specs/widgets/block.spec.md |
 | `widgets::Paragraph` | `widgets/paragraph.Paragraph` | mirrored | specs/widgets/paragraph.spec.md |
 | `widgets::List` + `ListState` | `widgets/list` | mirrored | specs/widgets/list.spec.md |
 | `widgets::Table` + `TableState` | `widgets/table` | mirrored | specs/widgets/table.spec.md |

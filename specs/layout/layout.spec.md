@@ -1,6 +1,7 @@
 # Layout spec
 
-- Parity: `layout::{Layout,Constraint,Direction}` · ADR: 0004 · Tests: tests/layout/test_layout.nim
+- Parity: `layout::{Layout,Constraint,Direction}` · ADR: 0004 · Tests: tests/test_layout.nim
+- Status: mirrored
 
 ## Purpose
 Split a `Rect` into sub-rects by constraints along a direction. The only way widgets obtain areas.
