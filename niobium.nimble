@@ -1,6 +1,6 @@
 # Package
 
-version       = "0.0.1"
+version       = "0.1.1"
 author        = "Niobium contributors"
 description   = "Ergonomic, immediate-mode Terminal User Interface library for Nim (a faithful port of ratatui's architecture)."
 license       = "MIT"
