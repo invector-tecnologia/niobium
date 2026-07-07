@@ -34,7 +34,7 @@ func style*(fg = none(Color), bg = none(Color), mods: set[Modifier] = {}): Style
   ## Construct a style from optional colors and a modifier set.
   runnableExamples:
     import std/options
-    import niobium/core/color
+    import tatui/core/color
     let s = style(fg = some(Red), mods = {mBold})
     doAssert s.addMods == {mBold}
   Style(fg: fg, bg: bg, addMods: mods)
@@ -65,7 +65,7 @@ func patch*(base, over: Style): Style =
   ## Overlay the set fields of `over` onto `base` (patch semantics).
   runnableExamples:
     import std/options
-    import niobium/core/color
+    import tatui/core/color
     let merged = defaultStyle().fg(Red).patch(defaultStyle().bg(Blue))
     doAssert merged.fg == some(Red) and merged.bg == some(Blue)
   result = base

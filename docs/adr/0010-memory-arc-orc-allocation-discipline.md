@@ -4,7 +4,7 @@
 - Date: 2026-07-06
 
 ## Context
-Niobium targets high-frequency redraws. GC pauses or per-frame allocation would cause jank and defeat
+TaTUÍ targets high-frequency redraws. GC pauses or per-frame allocation would cause jank and defeat
 the diffing optimization.
 
 ## Decision

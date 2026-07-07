@@ -1,4 +1,4 @@
-## Where Niobium draws inside the terminal (ADR-0001).
+## Where TaTUÍ draws inside the terminal (ADR-0001).
 
 import ../core/rect
 

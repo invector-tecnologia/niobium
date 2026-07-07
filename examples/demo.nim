@@ -3,7 +3,7 @@
 
 import std/options
 
-import niobium
+import tatui
 
 proc main() =
   var term = newTerminal(newTestBackend(48, 12))

@@ -1,9 +1,9 @@
 ---
 name: nim-testing
-description: "Use when writing or updating Niobium tests: TestBackend usage, golden snapshot format, layout truth-tables, the allocation invariant test, or ANSI parser fuzzing. Triggers: test, snapshot, golden, TestBackend, unittest, truth-table, allocation test, fuzz."
+description: "Use when writing or updating TaTUÍ tests: TestBackend usage, golden snapshot format, layout truth-tables, the allocation invariant test, or ANSI parser fuzzing. Triggers: test, snapshot, golden, TestBackend, unittest, truth-table, allocation test, fuzz."
 ---
 
-# Testing Niobium
+# Testing TaTUÍ
 
 ## Harness
 - Nim `unittest`; every suite is imported by `tests/all_tests.nim` (run via `nimble test`).

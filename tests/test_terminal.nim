@@ -1,6 +1,6 @@
 import std/unittest
 
-import ../src/niobium
+import ../src/tatui
 
 suite "terminal: draw loop":
   test "composes block + paragraph via TestBackend":

@@ -23,7 +23,7 @@ type
 func newBuffer*(area: Rect): Buffer =
   ## A buffer sized to `area`, filled with blank cells.
   runnableExamples:
-    import niobium/core/rect
+    import tatui/core/rect
     let b = newBuffer(rect(0, 0, 4, 2))
     doAssert b.content.len == 8
   result.area = area

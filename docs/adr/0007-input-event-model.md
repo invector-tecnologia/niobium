@@ -5,7 +5,7 @@
 
 ## Context
 A TUI is a loop: it must read keyboard, mouse, resize, and paste events. On Linux/macOS these arrive
-as bytes/escape sequences on stdin under termios raw mode. ratatui delegates to crossterm; Niobium
+as bytes/escape sequences on stdin under termios raw mode. ratatui delegates to crossterm; TaTUÍ
 has no such dependency and targets pure ANSI/termios (v1 scope: Linux + macOS).
 
 ## Decision

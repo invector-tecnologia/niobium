@@ -1,6 +1,6 @@
 ---
 name: unicode-width
-description: "Use when handling text, graphemes, or cell width in Niobium: Span/Line/Text, wide (CJK/emoji) characters, the cell skip flag, or grapheme segmentation. Triggers: unicode, grapheme, wide char, CJK, emoji, width, skip flag, combining, ZWJ."
+description: "Use when handling text, graphemes, or cell width in TaTUÍ: Span/Line/Text, wide (CJK/emoji) characters, the cell skip flag, or grapheme segmentation. Triggers: unicode, grapheme, wide char, CJK, emoji, width, skip flag, combining, ZWJ."
 ---
 
 # Unicode width & graphemes

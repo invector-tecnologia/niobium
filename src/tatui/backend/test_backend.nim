@@ -53,7 +53,7 @@ proc leaveAltScreen*(b: var TestBackend) =
 proc render*(b: TestBackend): string =
   ## A plain-text snapshot of the buffer: one line per row, trailing spaces trimmed per line.
   runnableExamples:
-    import niobium/core/buffer
+    import tatui/core/buffer
     var tb = newTestBackend(3, 1)
     tb.buffer.setString(0, 0, "hi")
     doAssert tb.render() == "hi"

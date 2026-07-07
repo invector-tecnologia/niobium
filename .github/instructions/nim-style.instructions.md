@@ -1,9 +1,9 @@
 ---
 applyTo: "**/*.nim"
-description: "Nim coding conventions for Niobium: naming, style, memory model, error handling."
+description: "Nim coding conventions for TaTUÍ: naming, style, memory model, error handling."
 ---
 
-# Nim style — Niobium
+# Nim style — TaTUÍ
 
 ## Formatting & naming
 - 2-space indentation, 100-column lines, formatted with `nph`.
@@ -27,5 +27,5 @@ description: "Nim coding conventions for Niobium: naming, style, memory model, e
 - Rendering/computing procs include a `runnableExamples` block; these are compiled by `nimble docs`.
 
 ## Prohibited
-- Writing to stdout/stderr or emitting escape sequences outside `src/niobium/backend/`.
+- Writing to stdout/stderr or emitting escape sequences outside `src/tatui/backend/`.
 - Hidden global mutable state; pass `Buffer`/`Frame`/state explicitly.

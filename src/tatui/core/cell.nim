@@ -51,7 +51,7 @@ proc reset*(c: var Cell) =
 proc apply*(c: var Cell, s: Style) =
   ## Overlay a `Style` onto the cell using patch semantics.
   runnableExamples:
-    import niobium/core/[color, style]
+    import tatui/core/[color, style]
     var x = cell("a")
     x.apply(defaultStyle().fg(Red).add(mBold))
     doAssert x.fg == Red and mBold in x.modifier

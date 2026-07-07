@@ -1,9 +1,9 @@
 ---
-applyTo: "src/niobium/{core,terminal,backend}/**"
+applyTo: "src/tatui/{core,terminal,backend}/**"
 description: "Render-path rules: allocation-free steady state, buffer swapping, backend-only output."
 ---
 
-# Render path — Niobium
+# Render path — TaTUÍ
 
 These files form the hot path (buffer, diff, terminal loop, backend dispatch). Extra rules apply.
 
@@ -19,7 +19,7 @@ These files form the hot path (buffer, diff, terminal loop, backend dispatch). E
 - Respect the `skip` flag on cells occupied by the trailing half of a wide (2-column) glyph.
 
 ## Backend boundary
-- Only `src/niobium/backend/` may emit bytes to the terminal.
+- Only `src/tatui/backend/` may emit bytes to the terminal.
 - The core/terminal layers describe *what* changed via `BufferPatch`; the backend decides *how* to
   encode it (including color degradation truecolor → 256 → 16).
 

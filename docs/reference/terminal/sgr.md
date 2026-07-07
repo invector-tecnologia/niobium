@@ -1,10 +1,10 @@
 # SGR (Select Graphic Rendition) — trimmed reference
 
-Subset used by the Niobium ANSI backend. Sequence form: `CSI <params> m` where `CSI` = `ESC [`.
+Subset used by the TaTUÍ ANSI backend. Sequence form: `CSI <params> m` where `CSI` = `ESC [`.
 
 ## Attributes
 
-| Code | Effect | Niobium `Modifier` |
+| Code | Effect | TaTUÍ `Modifier` |
 |---|---|---|
 | 0 | reset all | — |
 | 1 | bold | `Bold` |

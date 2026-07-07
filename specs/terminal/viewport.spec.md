@@ -4,7 +4,7 @@
 - Status: mirrored
 
 ## Purpose
-Where Niobium draws within the terminal.
+Where TaTUÍ draws within the terminal.
 
 ## API surface
 - `Viewport = enum-like variant`: `Fullscreen`, `Inline(height)`, `Fixed(rect)`.

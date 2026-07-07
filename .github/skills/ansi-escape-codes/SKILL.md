@@ -1,11 +1,11 @@
 ---
 name: ansi-escape-codes
-description: "Use when working on Niobium's ANSI backend or event parser: SGR styling, cursor movement, raw mode, alt screen, mouse capture, or decoding input escape sequences. Triggers: ANSI, escape sequence, SGR, CSI, termios, raw mode, alt screen, cursor move, color degradation, mouse, bracketed paste."
+description: "Use when working on TaTUÍ's ANSI backend or event parser: SGR styling, cursor movement, raw mode, alt screen, mouse capture, or decoding input escape sequences. Triggers: ANSI, escape sequence, SGR, CSI, termios, raw mode, alt screen, cursor move, color degradation, mouse, bracketed paste."
 ---
 
 # ANSI escape codes
 
-Only `src/niobium/backend/` and the event `reader` emit/decode escape sequences.
+Only `src/tatui/backend/` and the event `reader` emit/decode escape sequences.
 
 ## Output (backend)
 - Style via SGR (`CSI ... m`). Reset with `CSI 0 m` only when needed; track current style to avoid

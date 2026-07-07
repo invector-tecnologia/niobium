@@ -1,13 +1,13 @@
-# Parity map: ratatui → Niobium
+# Parity map: ratatui → TaTUÍ
 
-The single source of truth for architectural fidelity. Every public Niobium symbol that mirrors
+The single source of truth for architectural fidelity. Every public TaTUÍ symbol that mirrors
 ratatui must appear here. The `ratatui-parity` skill governs updates.
 
 **Status legend:** `planned` · `in-progress` · `mirrored` · `diverged` (with rationale).
 
 ## Core
 
-| ratatui | Niobium | Status | ADR / Spec |
+| ratatui | TaTUÍ | Status | ADR / Spec |
 |---|---|---|---|
 | `buffer::Buffer` | `core/buffer.Buffer` | mirrored | ADR-0003, specs/core/buffer.spec.md |
 | `buffer::Cell` | `core/cell.Cell` | mirrored | ADR-0003, specs/core/cell.spec.md |
@@ -19,7 +19,7 @@ ratatui must appear here. The `ratatui-parity` skill governs updates.
 
 ## Layout
 
-| ratatui | Niobium | Status | ADR / Spec |
+| ratatui | TaTUÍ | Status | ADR / Spec |
 |---|---|---|---|
 | `layout::Constraint` | `layout/constraint.Constraint` | mirrored | ADR-0004 |
 | `layout::Layout` | `layout/solver` | mirrored | ADR-0004, specs/layout/layout.spec.md |
@@ -27,7 +27,7 @@ ratatui must appear here. The `ratatui-parity` skill governs updates.
 
 ## Backend & terminal
 
-| ratatui | Niobium | Status | ADR / Spec |
+| ratatui | TaTUÍ | Status | ADR / Spec |
 |---|---|---|---|
 | `backend::Backend` (trait) | `backend/backend.Backend` (concept) | mirrored | ADR-0002, specs/backend/backend.spec.md |
 | `backend::CrosstermBackend` | `backend/ansi.AnsiBackend` | mirrored | ADR-0007, ADR-0008 |
@@ -38,7 +38,7 @@ ratatui must appear here. The `ratatui-parity` skill governs updates.
 
 ## Events
 
-| ratatui / crossterm | Niobium | Status | ADR / Spec |
+| ratatui / crossterm | TaTUÍ | Status | ADR / Spec |
 |---|---|---|---|
 | `event::Event` | `event/event.Event` | mirrored | ADR-0007 |
 | `event::KeyEvent` | `event/event.KeyEvent` | mirrored | ADR-0007 |
@@ -46,7 +46,7 @@ ratatui must appear here. The `ratatui-parity` skill governs updates.
 
 ## Widgets
 
-| ratatui | Niobium | Status | ADR / Spec |
+| ratatui | TaTUÍ | Status | ADR / Spec |
 |---|---|---|---|
 | `widgets::Block` | `widgets/blocks.Block` | mirrored | specs/widgets/block.spec.md |
 | `widgets::Paragraph` | `widgets/paragraph.Paragraph` | mirrored | specs/widgets/paragraph.spec.md |

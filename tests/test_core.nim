@@ -1,6 +1,6 @@
 import std/[options, unittest]
 
-import ../src/niobium
+import ../src/tatui
 
 suite "core: rect":
   test "edges and area":

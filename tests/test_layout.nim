@@ -1,6 +1,6 @@
 import std/unittest
 
-import ../src/niobium
+import ../src/tatui
 
 suite "layout: split truth-tables":
   test "length then fill":

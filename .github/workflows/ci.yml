@@ -26,7 +26,7 @@ jobs:
         run: ./scripts/check-backend-boundary.sh
 
       - name: Type + style check
-        run: nim check --styleCheck:error --hints:off src/niobium.nim
+        run: nim check --styleCheck:error --hints:off src/tatui.nim
 
       - name: Format check (nph)
         run: |

@@ -1,6 +1,6 @@
 import std/[options, strutils, unittest]
 
-import ../src/niobium
+import ../src/tatui
 
 proc renderOnce[W](w: W, width, height: int): TestBackend =
   result = newTestBackend(width, height)
