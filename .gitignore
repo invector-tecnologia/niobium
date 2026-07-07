@@ -22,3 +22,6 @@ fuzz-*.log
 *.swp
 
 .env
+nimble.develop
+nimble.paths
+nimbledeps
