@@ -8,7 +8,7 @@ import ./tatui/backend/[backend, ansi, test_backend]
 export core, layout, terminal, event, widgets
 export backend, ansi, test_backend
 
-const TatuiVersion* = "0.2.0" ## The TaTUÍ package version.
+const TatuiVersion* = "0.1.2" ## The TaTUÍ package version.
 
 runnableExamples:
   doAssert TatuiVersion.len > 0

@@ -1,7 +1,7 @@
 # Package
 
-version       = "0.2.0"
-author        = "Bernardo Rosmaninho <bernardo.rosmaninho@gmail.com>"
+version       = "0.1.2"
+author        = "Bernardo Rosmaninho <bernardo@ivector.com.br>"
 description   = "Ergonomic, immediate-mode Terminal User Interface library for Nim."
 license       = "AGPL-3.0"
 srcDir        = "src"
