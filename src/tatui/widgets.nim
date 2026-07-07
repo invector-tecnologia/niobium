@@ -1,4 +1,4 @@
-## All Niobium widgets.
+## All TaTUÍ widgets.
 import
   ./widgets/[
     draw, blocks, paragraph, list, table, tabs, clear, gauge, sparkline, bar_chart,

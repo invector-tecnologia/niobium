@@ -1,10 +1,10 @@
 ---
-description: "Port one ratatui widget to Niobium spec-first, running the full TDD parity loop."
+description: "Port one ratatui widget to TaTUÍ spec-first, running the full TDD parity loop."
 name: "Port Widget"
 argument-hint: "The widget name (e.g. paragraph, list, gauge)"
 agent: "Port Widget"
 ---
-Port the named widget to Niobium.
+Port the named widget to TaTUÍ.
 
 - Read `specs/widgets/<name>.spec.md`, the cited ADRs, and the parity-map row.
 - Write failing tests + golden snapshots first, then implement the minimal widget.

@@ -1,18 +1,18 @@
-# Niobium
+# TaTUÍ
 
-![Niobium logo](docs/images/logo_niobium.png)
+![TaTUÍ logo](docs/images/logo_tatui.png)
 
 **An ergonomic, immediate-mode Terminal User Interface (TUI) library for Nim.**
 
-Niobium helps you build rich, flicker-free terminal apps by describing your UI as a pure function of
-your application state. You rebuild the interface every tick; Niobium figures out the minimal set of
+TaTUÍ helps you build rich, flicker-free terminal apps by describing your UI as a pure function of
+your application state. You rebuild the interface every tick; TaTUÍ figures out the minimal set of
 cells that actually changed and updates only those.
 
 > Status: v1 core is implemented and tested — core buffer/diff, ANSI + test backends, constraint
 > layout, the terminal tick loop, an event decoder, and the widget set (Block, Paragraph, List,
 > Table, Tabs, Clear, Gauge, Sparkline, BarChart, Scrollbar, Chart).
 
-## Why Niobium
+## Why TaTUÍ
 
 - **Immediate mode, no flicker.** Draw your whole UI each frame from current state. A retained cell
   buffer is diffed under the hood, so only real changes are written to the terminal.
@@ -25,7 +25,7 @@ cells that actually changed and updates only those.
 
 ## The three pillars
 
-1. **Double buffering + diffing** — widgets write into an in-memory `Buffer`; Niobium diffs it
+1. **Double buffering + diffing** — widgets write into an in-memory `Buffer`; TaTUÍ diffs it
    against the previous frame and emits only the deltas.
 2. **Backend agnosticism** — spatial and drawing logic knows nothing about the terminal; output goes
    through the `Backend` concept.
@@ -39,7 +39,7 @@ v1.)
 ## Installation
 
 ```sh
-nimble install niobium
+nimble install tatui
 ```
 
 Requires Nim ≥ 2.0.
@@ -47,7 +47,7 @@ Requires Nim ≥ 2.0.
 ## A taste of the API
 
 ```nim
-import niobium
+import tatui
 
 var term = newTerminal(newAnsiBackend())
 term.setup()
@@ -55,7 +55,7 @@ defer: term.restore()
 
 term.draw proc(f: var Frame) =
   let chunks = f.area.split(Vertical, @[length(3), fill(1)])
-  f.renderWidget(initBlock(title = " Niobium ", borders = AllBorders), chunks[0])
+  f.renderWidget(initBlock(title = " TaTUÍ ", borders = AllBorders), chunks[0])
   f.renderWidget(paragraph("Hello, terminal!"), chunks[1])
 ```
 
@@ -64,14 +64,14 @@ See runnable examples in [`examples/`](examples): `examples/hello.nim` (interact
 
 ## Project layout
 
-- `src/niobium/` — library source (`core`, `layout`, `backend`, `terminal`, `event`, `widgets`).
+- `src/tatui/` — library source (`core`, `layout`, `backend`, `terminal`, `event`, `widgets`).
 - `specs/` — behavior specs written before the code that implements them.
 - `docs/adr/` — architecture decision records.
 - `docs/reference/` — the ratatui parity map and trimmed terminal references.
 
 ## Contributing
 
-Niobium is spec-first: adjust the spec in `specs/`, add a failing test, then implement. See
+TaTUÍ is spec-first: adjust the spec in `specs/`, add a failing test, then implement. See
 [`AGENTS.md`](AGENTS.md) for the reasoning loop and Definition of Done, and
 [`.github/copilot-instructions.md`](.github/copilot-instructions.md) for the architectural
 invariants. Please be kind and constructive in issues and reviews — everyone here is learning and
@@ -79,7 +79,7 @@ building together. 💚
 
 ## Acknowledgements
 
-Niobium stands on the shoulders of [**ratatui**](https://github.com/ratatui/ratatui), the wonderful
+TaTUÍ stands on the shoulders of [**ratatui**](https://github.com/ratatui/ratatui), the wonderful
 Rust TUI library whose architecture — double buffering, backend abstraction, and constraint-based
 layout — is the direct inspiration for this project. Huge thanks to the ratatui maintainers and
 community for their thoughtful design and generous open-source work. If you write Rust, go build

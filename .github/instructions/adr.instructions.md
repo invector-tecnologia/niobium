@@ -1,9 +1,9 @@
 ---
 applyTo: "docs/adr/**"
-description: "Architecture Decision Record format (MADR-lite) for Niobium."
+description: "Architecture Decision Record format (MADR-lite) for TaTUÍ."
 ---
 
-# ADR format — Niobium
+# ADR format — TaTUÍ
 
 Use a lightweight MADR structure. One decision per file, named `NNNN-kebab-title.md`.
 

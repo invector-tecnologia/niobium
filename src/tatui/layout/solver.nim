@@ -108,8 +108,8 @@ proc split*(
 ): seq[Rect] =
   ## Split `area` along `dir` into one rect per constraint.
   runnableExamples:
-    import niobium/core/rect
-    import niobium/layout/constraint
+    import tatui/core/rect
+    import tatui/layout/constraint
     let cols = rect(0, 0, 10, 1).split(Horizontal, @[length(3), fill(1)])
     doAssert cols[0] == rect(0, 0, 3, 1)
     doAssert cols[1] == rect(3, 0, 7, 1)

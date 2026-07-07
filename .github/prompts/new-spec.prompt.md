@@ -1,5 +1,5 @@
 ---
-description: "Create a new Niobium module/widget spec following the spec-first template."
+description: "Create a new TaTUÍ module/widget spec following the spec-first template."
 name: "New Spec"
 argument-hint: "The module or widget name"
 agent: "Spec Author"

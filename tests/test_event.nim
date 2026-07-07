@@ -1,6 +1,6 @@
 import std/[unicode, unittest]
 
-import ../src/niobium
+import ../src/tatui
 
 suite "event: decode":
   test "chars, arrows, enter":

@@ -3,7 +3,7 @@
 
 import std/[options, unicode]
 
-import niobium
+import tatui
 
 proc main() =
   var term = newTerminal(newAnsiBackend())
@@ -13,7 +13,7 @@ proc main() =
   var running = true
   while running:
     term.draw proc(f: var Frame) =
-      let b = initBlock(title = " Niobium ", borders = AllBorders, borderType = btRounded,
+      let b = initBlock(title = " TaTUÍ ", borders = AllBorders, borderType = btRounded,
                         borderStyle = defaultStyle().fg(Cyan))
       f.renderWidget(b, f.area)
       f.renderWidget(

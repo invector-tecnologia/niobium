@@ -1,6 +1,6 @@
-# Niobium — Copilot Instructions
+# TaTUÍ — Copilot Instructions
 
-Niobium is an ergonomic, **immediate-mode** Terminal User Interface (TUI) library for Nim.
+TaTUÍ is an ergonomic, **immediate-mode** Terminal User Interface (TUI) library for Nim.
 It is a faithful architectural port of [ratatui](https://github.com/ratatui/ratatui) (Rust),
 adapted to Nim's metaprogramming and ARC/ORC memory model.
 
@@ -14,7 +14,7 @@ adapted to Nim's metaprogramming and ARC/ORC memory model.
 ## The three architectural pillars (never violate)
 
 1. **Double buffering + diffing.** Widgets write cells into an in-memory `Buffer`. At the end of a
-   tick, Niobium diffs the new buffer against the previous one and emits only the minimal set of
+   tick, TaTUÍ diffs the new buffer against the previous one and emits only the minimal set of
    cell updates.
 2. **Backend agnosticism.** Spatial/drawing logic knows nothing about the OS or the terminal
    library. All output flows through the `Backend` concept.
@@ -25,7 +25,7 @@ adapted to Nim's metaprogramming and ARC/ORC memory model.
 
 - **Allocation-free steady state.** The render path (`draw` → diff → dispatch) must not allocate on
   the heap once buffers are sized. Reuse buffers and `swap` them each tick; never reallocate.
-- **Backend-only output.** No code outside `src/niobium/backend/` may write to the terminal or emit
+- **Backend-only output.** No code outside `src/tatui/backend/` may write to the terminal or emit
   escape sequences. Everything goes through the `Backend` concept.
 - **`--mm:orc` only.** No `--mm:refc`, no manual `alloc`/`dealloc`.
 - **Every public symbol** has a doc comment and, where it renders or computes, a `runnableExamples`.

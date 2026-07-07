@@ -1,6 +1,6 @@
 # Pinned ratatui reference snapshot
 
-Niobium is a faithful port of ratatui. To keep RAG deterministic and token-bounded, we vendor a
+TaTUÍ is a faithful port of ratatui. To keep RAG deterministic and token-bounded, we vendor a
 **pinned** snapshot of only the ratatui modules we are porting — not the whole crate, and never the
 live repository.
 

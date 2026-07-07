@@ -1,6 +1,6 @@
 ---
 name: constraint-layout
-description: "Use when implementing or testing Niobium's layout engine: Constraint, Rect splitting, the solver, spacing/margins, or the layout cache. Covers constraint semantics, integer rounding, and cache keying. Triggers: layout, constraint, split, rect, flex, percentage, ratio, fill, solver."
+description: "Use when implementing or testing TaTUÍ's layout engine: Constraint, Rect splitting, the solver, spacing/margins, or the layout cache. Covers constraint semantics, integer rounding, and cache keying. Triggers: layout, constraint, split, rect, flex, percentage, ratio, fill, solver."
 ---
 
 # Constraint-based layout

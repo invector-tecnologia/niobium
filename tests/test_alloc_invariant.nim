@@ -4,7 +4,7 @@
 
 import std/unittest
 
-import ../src/niobium
+import ../src/tatui
 
 proc drawTick(term: var Terminal[TestBackend], frame: int) =
   term.draw proc(f: var Frame) =

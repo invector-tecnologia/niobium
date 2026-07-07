@@ -1,6 +1,6 @@
 # Specs
 
-Niobium is **spec-first**: behavior is described here before code exists, and each spec is backed by
+TaTUÍ is **spec-first**: behavior is described here before code exists, and each spec is backed by
 executable tests (golden snapshots + truth-tables). Specs are derived from the ratatui parity map
 (`docs/reference/parity-map.md`).
 

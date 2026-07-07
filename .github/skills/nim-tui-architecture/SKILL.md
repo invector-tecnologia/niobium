@@ -1,9 +1,9 @@
 ---
 name: nim-tui-architecture
-description: "Use when working on Niobium's render path: Buffer, Cell, diffing, the terminal tick loop, or backend dispatch. Covers allocation-free steady state, buffer swapping, and the immediate/retained boundary. Triggers: buffer, diff, tick, render path, allocation, swap, double buffering."
+description: "Use when working on TaTUÍ's render path: Buffer, Cell, diffing, the terminal tick loop, or backend dispatch. Covers allocation-free steady state, buffer swapping, and the immediate/retained boundary. Triggers: buffer, diff, tick, render path, allocation, swap, double buffering."
 ---
 
-# Niobium render-path architecture
+# TaTUÍ render-path architecture
 
 ## The tick (never reorder)
 1. `Terminal.draw(render)` builds a `Frame` over `nextBuffer`.
@@ -22,4 +22,4 @@ description: "Use when working on Niobium's render path: Buffer, Cell, diffing, 
 - The cell buffer is retained: it is the diff baseline. Do not remove or bypass it.
 
 ## Backend boundary
-Output bytes only in `src/niobium/backend/`. Core describes *what* changed via `BufferPatch`.
+Output bytes only in `src/tatui/backend/`. Core describes *what* changed via `BufferPatch`.

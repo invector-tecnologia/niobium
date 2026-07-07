@@ -1,6 +1,6 @@
 # Control sequences — trimmed reference
 
-Subset of xterm/ECMA-48 control sequences used by Niobium. `CSI` = `ESC [`, `SS3` = `ESC O`.
+Subset of xterm/ECMA-48 control sequences used by TaTUÍ. `CSI` = `ESC [`, `SS3` = `ESC O`.
 
 ## Cursor & screen (output)
 

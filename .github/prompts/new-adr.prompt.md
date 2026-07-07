@@ -1,5 +1,5 @@
 ---
-description: "Create a new Architecture Decision Record for Niobium following the MADR-lite format."
+description: "Create a new Architecture Decision Record for TaTUÍ following the MADR-lite format."
 name: "New ADR"
 argument-hint: "The decision title and short context"
 agent: "agent"

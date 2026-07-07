@@ -1,4 +1,4 @@
-# AGENTS.md — Niobium agent operating contract
+# AGENTS.md — TaTUÍ agent operating contract
 
 This file defines how automated agents (and humans) must work in this repository. It complements
 `.github/copilot-instructions.md`, which holds the architectural invariants.
@@ -22,7 +22,7 @@ specs, CI) is established before product code. Each unit of product code is driv
 ## Quality gates (run in this order)
 
 ```
-nim check --styleCheck:error --hints:off src/niobium.nim   # 1. types + style
+nim check --styleCheck:error --hints:off src/tatui.nim   # 1. types + style
 nph --check src tests                                       # 2. formatting
 nimble test                                                 # 3. unit + snapshot + layout truth-tables (--mm:orc)
 nim c -r tests/test_alloc_invariant.nim                     # 4. zero steady-state allocations

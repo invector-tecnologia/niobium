@@ -1,9 +1,9 @@
 ---
 applyTo: "tests/**"
-description: "Testing conventions for Niobium: TestBackend, golden snapshots, layout truth-tables."
+description: "Testing conventions for TaTUÍ: TestBackend, golden snapshots, layout truth-tables."
 ---
 
-# Testing — Niobium
+# Testing — TaTUÍ
 
 ## Structure
 - Tests use Nim's `unittest` module and are aggregated in `tests/all_tests.nim`.

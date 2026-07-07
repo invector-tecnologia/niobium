@@ -3,7 +3,7 @@
 
 import std/[random, unittest]
 
-import ../../src/niobium
+import ../../src/tatui
 
 suite "ansi parser fuzz smoke":
   test "random byte streams never crash and never over-consume":
